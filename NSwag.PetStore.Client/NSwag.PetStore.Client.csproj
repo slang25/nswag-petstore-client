@@ -7,7 +7,7 @@
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
         <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-        <PackageReference Include="NSwag.MSBuild" Version="12.0.15" PrivateAssets="all" />
+        <DotNetCliToolReference Include="NSwag.ConsoleCore" Version="12.0.15" />
     </ItemGroup>
 
     <Target Name="GenerateNSwagClient">
@@ -16,7 +16,7 @@
             <ClientName>PetStore</ClientName>
             <GeneratedSwaggerClientFile Condition="'$(GeneratedSwaggerClientFile)' ==''">$(IntermediateOutputPath)$(MSBuildProjectName).$(ClientName)Client.cs</GeneratedSwaggerClientFile>
         </PropertyGroup>
-        <Exec Command="$(NSwagExe_Core22) run nswag.json /variables:InputSwagger=$(InputSwagger),ClientName=$(ClientName),ClientNamespace=$(RootNamespace),GeneratedSwaggerClientFile=$(GeneratedSwaggerClientFile)" />
+        <Exec Command="dotnet nswag run nswag.json /variables:InputSwagger=$(InputSwagger),ClientName=$(ClientName),ClientNamespace=$(RootNamespace),GeneratedSwaggerClientFile=$(GeneratedSwaggerClientFile)" />
     </Target>
 
     <Target Name="IncludeNSwagClient" BeforeTargets="CoreCompile" DependsOnTargets="GenerateNSwagClient">
