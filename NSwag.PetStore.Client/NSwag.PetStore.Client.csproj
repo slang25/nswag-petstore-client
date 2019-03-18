@@ -10,10 +10,11 @@
 
     <Target Name="GenerateNSwagClient">
         <PropertyGroup>
+            <InputSwagger>swagger.json</InputSwagger>
             <ClientName>PetStore</ClientName>
             <GeneratedSwaggerClientFile Condition="'$(GeneratedSwaggerClientFile)' ==''">$(IntermediateOutputPath)$(MSBuildProjectName).$(ClientName)Client.cs</GeneratedSwaggerClientFile>
         </PropertyGroup>
-        <Exec Command="$(NSwagExe_Core22) run nswag.json /input:swagger.json /variables:ClientName=$(ClientName),ClientNamespace=$(RootNamespace),GeneratedSwaggerClientFile=$(GeneratedSwaggerClientFile)" />
+        <Exec Command="$(NSwagExe_Core22) run nswag.json /variables:InputSwagger=$(InputSwagger),ClientName=$(ClientName),ClientNamespace=$(RootNamespace),GeneratedSwaggerClientFile=$(GeneratedSwaggerClientFile)" />
     </Target>
 
     <Target Name="IncludeNSwagClient" BeforeTargets="CoreCompile" DependsOnTargets="GenerateNSwagClient">

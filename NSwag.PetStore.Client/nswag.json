@@ -1,6 +1,11 @@
 ﻿{
   "runtime": "NetCore22",
   "defaultVariables": null,
+  "swaggerGenerator":{
+    "fromSwagger":{
+      "json":"$(InputSwagger)"
+    }
+  },
   "codeGenerators": {
     "swaggerToCSharpClient": {
       "clientBaseClass": null,
