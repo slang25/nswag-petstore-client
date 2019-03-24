@@ -70,7 +70,7 @@
       "handleReferences": false,
       "generateImmutableArrayProperties": false,
       "generateImmutableDictionaryProperties": false,
-      "jsonSerializerSettingsTransformationMethod": null,
+      "jsonSerializerSettingsTransformationMethod": "$(ClientNamespace).$(ClientName)SerializerSettings.TransformSettings",
       "inlineNamedDictionaries": false,
       "inlineNamedTuples": true,
       "templateDirectory": null,
