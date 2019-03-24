@@ -22,7 +22,7 @@ let ``Given missing collection property, we deserialize to an empty collection. 
 
     let options =  HttpClientInterceptorOptions().ThrowsOnMissingRegistration()
     builder.RegisterWith options |> ignore
-    let innerClient = options.CreateHttpClient()
+    use innerClient = options.CreateHttpClient()
     
     innerClient.BaseAddress <- "http://test-host" |> Uri
     
